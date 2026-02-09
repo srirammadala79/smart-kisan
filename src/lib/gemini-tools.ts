@@ -1,4 +1,6 @@
 import { tools, Tool } from "@/data/tools";
+import { SchemaType, FunctionDeclaration } from "@google/generative-ai";
+
 
 /**
  * Summarizes available equipment.
@@ -55,12 +57,12 @@ export async function book_tool_rental(toolId: number, duration: number) {
 }
 
 // Tool definitions for Gemini API
-export const farmingTools = [
+export const farmingTools: FunctionDeclaration[] = [
     {
         name: "list_farming_tools",
         description: "List all available farming tools, machinery, and equipment available for rent or purchase.",
         parameters: {
-            type: "OBJECT",
+            type: SchemaType.OBJECT,
             properties: {},
             required: []
         }
@@ -69,10 +71,10 @@ export const farmingTools = [
         name: "get_tool_details",
         description: "Get detailed information about a specific farming tool, including its price, rental rate, efficiency, and description.",
         parameters: {
-            type: "OBJECT",
+            type: SchemaType.OBJECT,
             properties: {
                 toolName: {
-                    type: "STRING",
+                    type: SchemaType.STRING,
                     description: "The name of the tool to get details for (e.g., 'Drone', 'Harvester')."
                 }
             },
@@ -83,14 +85,14 @@ export const farmingTools = [
         name: "book_tool_rental",
         description: "Book a rental for a specific farming tool.",
         parameters: {
-            type: "OBJECT",
+            type: SchemaType.OBJECT,
             properties: {
                 toolId: {
-                    type: "NUMBER",
+                    type: SchemaType.NUMBER,
                     description: "The unique ID of the tool to rent."
                 },
                 duration: {
-                    type: "NUMBER",
+                    type: SchemaType.NUMBER,
                     description: "The duration of the rental (e.g., number of hours or acres)."
                 }
             },
@@ -98,3 +100,4 @@ export const farmingTools = [
         }
     }
 ];
+
